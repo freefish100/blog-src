@@ -1,0 +1,6 @@
+# baseURL = 'https://example.org/'
+baseURL = 'http://74.48.13.81/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'hugo-theme-cleanwhite'
+# theme = 'ananke'

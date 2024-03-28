@@ -1,0 +1,10 @@
+baseurl = "/"
+title = "Mainroad"
+languageCode = "en-us"
+paginate = "10" # Number of posts per page
+theme = "mainroad"
+disqusShortname = "" # DEPRECATED! Use .Services.Disqus.Shortname
+googleAnalytics = "" # DEPRECATED! Use .Services.googleAnalytics.ID
+
+[Params.style.vars]
+  highlightColor = "#2956a3" # Override highlight color

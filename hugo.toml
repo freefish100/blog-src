@@ -26,9 +26,9 @@ googleAnalytics = "" # DEPRECATED! Use .Services.googleAnalytics.ID
 
 # 用于设置网站Logo的参数
 [Params.logo]
-image = "img/placeholder.png"
+image = "img/logo.png"
 title = "自游鱼记" # Logo的标题
-subtitle = "那一点记忆" # Logo的副标题
+subtitle = "从原点再出发" # Logo的副标题
 
 # 侧边栏的配置
 [Params.sidebar]

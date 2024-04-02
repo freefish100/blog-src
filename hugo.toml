@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "自游鱼记"
+title = ""
 languageCode = "en-us" # 设置网站使用的语言代码，这里是美国英语
 defaultContentLanguage = "zh-cn" # 设置网站默认语言为中文(若去掉这一行则默认英文)
 paginate = "10" # Number of posts per page
@@ -27,7 +27,6 @@ googleAnalytics = "" # DEPRECATED! Use .Services.googleAnalytics.ID
 # 用于设置网站Logo的参数
 [Params.logo]
 image = "img/logo.png"
-title = "自游鱼记" # Logo的标题
 subtitle = "从原点再出发" # Logo的副标题
 
 # 侧边栏的配置
@@ -45,4 +44,12 @@ subtitle = "从原点再出发" # Logo的副标题
 recent_num = 5 # “最近文章”小部件显示的文章数量
 featured_num = 5 # “精选文章”小部件显示的文章数量
 
+# 搜索功能
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 
+[outputFormats.JSON]
+  mediaType = "application/json"
+  baseName = "search"
+  isPlainText = true
+  notAlternative = true

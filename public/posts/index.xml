@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 自游鱼记</title>
+    <title>Posts on </title>
     <link>/posts/</link>
-    <description>Recent content in Posts on 自游鱼记</description>
+    <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate>
@@ -70,6 +70,13 @@
       <pubDate>Mon, 25 Mar 2024 01:38:08 +0000</pubDate>
       <guid>/posts/test01/</guid>
       <description>Introduction This is bold text, and this is emphasized text. This is bold text, and this is emphasized text. This is bold text, and this is emphasized text. This is bold text, and this is emphasized text. This is bold text, and this is emphasized text. This is bold text, and this is emphasized text. This is bold text, and this is emphasized text. This is bold text, and this is emphasized text.</description>
+    </item>
+    <item>
+      <title>Search</title>
+      <link>/posts/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/posts/search/</guid>
+      <description>这将创建一个包含搜索框和用于显示结果的容器的搜索页面 </description>
     </item>
   </channel>
 </rss>

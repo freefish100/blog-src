@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zh-cn">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45621&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Another Test - </title>
+	<title>Search - </title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:title" content="Another Test" />
-<meta property="og:description" content="John Doe&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/another-test/" />
+		<meta property="og:title" content="Search" />
+<meta property="og:description" content=" " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://74.48.13.81:45621/search/" /><meta property="article:section" content="" />
 
-		<meta itemprop="name" content="Another Test">
-<meta itemprop="description" content="John Doe&#39;s Personal blog about everything">
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Another Test"/>
-<meta name="twitter:description" content="John Doe&#39;s Personal blog about everything"/>
+
+
+		<meta itemprop="name" content="Search">
+<meta itemprop="description" content=" ">
+
+<meta itemprop="wordCount" content="0">
+<meta itemprop="keywords" content="" />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Search"/>
+<meta name="twitter:description" content=" "/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -23,10 +28,8 @@
 
 	<link rel="stylesheet" href="/css/style.css">
 	
-	<link rel="alternate" type="application/rss+xml" href="/tags/another-test/index.xml" title="">
 
 	<link rel="shortcut icon" href="/favicon.ico">
-		
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -46,41 +49,24 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
-<main class="main list" role="main">
-	<header class="main__header">
-		<h1 class="main__title">Another Test</h1>
-	</header><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/posts/test09/">
-		<img class="thumbnail__image" src="/img/placeholder.png" alt="Example article title">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/test09/" rel="bookmark">
-			Example article title
-			</a>
-		</h2>
-		<p class="list__lead post__lead">Example lead - highlighted near the title</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-03-31T00:00:00Z">2024-03-31</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/category-1/" rel="category">Category 1</a>, <a class="meta__link" href="/categories/category-2/" rel="category">Category 2</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		一个网站，使用纯静态方法，不使用数据库，来实现商品记录的浏览、并可以增加新的商品记录，对每条商品能进行修改，删除。商品的字段包括“商品名称”、“配置”、“价格”和“备注”。请问具体的代码是怎样写？
- …
-	</div>
-</article>
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Search</h1>
+			
+		</header>
+		<div class="content post__content clearfix">
+			<!-- raw HTML omitted -->
 
+		</div>
+	</article>
 </main>
 
 
+
+
 			</div>
-			
-<aside class="sidebar">
+			<aside class="sidebar">
 <div class="widget-featured widget">
         <h4 class="widget__title">精选文章</h4>
         <div class="widget__content">
@@ -91,12 +77,31 @@
         </div>
 </div>
 <div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/">
-	</form>
+  <input id="search-input" class="widget-search__field" type="text" placeholder="搜索…">
+  <div id="search-results"></div>
 </div>
+
+<script type="module">
+  import { search } from '/js/search.js'
+
+  const searchInput = document.getElementById('search-input')
+  const searchResults = document.getElementById('search-results')
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim()
+    const results = search(query)
+
+    searchResults.innerHTML = ''
+    if (query.length > 0) {
+      results.forEach(url => {
+        const link = document.createElement('a')
+        link.href = url
+        link.textContent = url
+        searchResults.appendChild(link)
+      })
+    }
+  })
+</script>
 
 <div class="widget-recent widget">
 	<h4 class="widget__title">近期文章</h4>
@@ -139,6 +144,11 @@
 		</div>
 	</div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha256-g3+g8z5pVOKBIp5tA4n2HtR8b1xP0lKjZ6kq3alDglk=" crossorigin="anonymous"></script>
+
+<script src="/js/search.js"></script>
+
 
 
 	</div>

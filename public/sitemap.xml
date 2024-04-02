@@ -2,57 +2,59 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.freezz.cc/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/tags/another-test/</loc>
+    <loc>http://localhost:1313/tags/another-test/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/categories/category-1/</loc>
+    <loc>http://localhost:1313/categories/category-1/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/categories/category-2/</loc>
+    <loc>http://localhost:1313/categories/category-2/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test09/</loc>
+    <loc>http://localhost:1313/posts/test09/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/tags/test/</loc>
+    <loc>http://localhost:1313/tags/test/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test08/</loc>
+    <loc>http://localhost:1313/posts/test08/</loc>
     <lastmod>2024-03-29T10:02:15+08:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test07/</loc>
+    <loc>http://localhost:1313/posts/test07/</loc>
     <lastmod>2024-03-29T09:57:08+08:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test06/</loc>
+    <loc>http://localhost:1313/posts/test06/</loc>
     <lastmod>2024-03-29T09:52:36+08:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test05/</loc>
+    <loc>http://localhost:1313/posts/test05/</loc>
     <lastmod>2024-03-29T09:30:22+08:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test04/</loc>
+    <loc>http://localhost:1313/posts/test04/</loc>
     <lastmod>2024-03-28T17:52:34+08:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test03/</loc>
+    <loc>http://localhost:1313/posts/test03/</loc>
     <lastmod>2024-03-28T12:06:14+08:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test02/</loc>
+    <loc>http://localhost:1313/posts/test02/</loc>
     <lastmod>2024-03-25T09:54:13+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/test01/</loc>
+    <loc>http://localhost:1313/posts/test01/</loc>
     <lastmod>2024-03-25T01:38:08+00:00</lastmod>
   </url><url>
-    <loc>https://blog.freezz.cc/posts/search/</loc>
+    <loc>http://localhost:1313/posts/search/</loc>
+  </url><url>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>

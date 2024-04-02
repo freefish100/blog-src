@@ -1,7 +1,7 @@
-<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><style>
-     
+<style>
+    /* 增加搜索框的下外边距 */
     #searchTerm {
-      margin-bottom: 20px;  
+      margin-bottom: 20px; /* 例如，增加20px的下外边距 */
     }
   </style>
 
@@ -45,13 +45,13 @@
     }
   
     function initiateSearch() {
-  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let searchTerm = document.getElementById("searchTerm").value.trim(); // 使用.trim()去除两端空格
   let container = document.getElementById("resultsContainer");
 
-  
+  // 如果搜索词为空，则清空搜索结果并返回
   if (searchTerm === "") {
     container.innerHTML = "文章搜索";
-    return; 
+    return; // 提前退出函数
   }
 
   let xhr = new XMLHttpRequest();

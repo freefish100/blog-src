@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zh-cn">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>404 Page not found - </title>
@@ -9,7 +9,7 @@
 		<meta property="og:title" content="404 Page not found" />
 <meta property="og:description" content="John Doe&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.freezz.cc/404.html" />
+<meta property="og:url" content="http://localhost:1313/404.html" />
 
 		<meta itemprop="name" content="404 Page not found">
 <meta itemprop="description" content="John Doe&#39;s Personal blog about everything">
@@ -25,7 +25,6 @@
 	
 
 	<link rel="shortcut icon" href="/favicon.ico">
-		
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -64,14 +63,58 @@
                 </ul>
         </div>
 </div>
-<div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="https://blog.freezz.cc/">
-	</form>
-</div>
+<form class="search"> 
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()">
+  </form>
+  <div id="resultsContainer">请输入关键词进行搜索...</div>
 
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+      let searchTerm = document.getElementById("searchTerm").value;
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', '/index.json', true);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          let jsonData = JSON.parse(xhr.responseText);
+          let searchResults = search(jsonData, searchTerm);
+          displayResults(searchResults);
+        }
+      };
+      xhr.send();
+    }
+  </script>
 <div class="widget-recent widget">
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">

@@ -44,4 +44,6 @@ subtitle = "从原点再出发" # Logo的副标题
 recent_num = 5 # “最近文章”小部件显示的文章数量
 featured_num = 5 # “精选文章”小部件显示的文章数量
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 

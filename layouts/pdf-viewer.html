@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ .Title }}</title>
+    <script src="/pdfjs/build/pdf.mjs"></script>
+</head>
+<body>
+    <canvas id="pdf-canvas"></canvas>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs/build/pdf.worker.mjs';
+
+        // 从页面的Front Matter中动态获取PDF文件路径
+        var pdfPath = '{{ .Params.pdf_path }}';
+        if (pdfPath) {
+            var loadingTask = pdfjsLib.getDocument(pdfPath);
+            loadingTask.promise.then(function(pdf) {
+                console.log('PDF loaded');
+                
+                pdf.getPage(1).then(function(page) {
+                    var scale = 1.5;
+                    var viewport = page.getViewport({scale: scale});
+                    var canvas = document.getElementById('pdf-canvas');
+                    var context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    var renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    var renderTask = page.render(renderContext);
+                    renderTask.promise.then(function () {
+                        console.log('Page rendered');
+                    });
+                });
+            }, function (reason) {
+                console.error(reason);
+            });
+        } else {
+            console.error('PDF path is not specified.');
+        }
+    </script>
+</body>
+</html>

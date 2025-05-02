@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区">
+		<meta property="og:url" content="http://localhost:1313/posts/js20241205a/">
+  <meta property="og:site_name" content="自游鱼">
+  <meta property="og:title" content="储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区">
+  <meta property="og:description" content="储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-05T00:00:00+00:00">
+    <meta property="article:tag" content="Windows">
+
+		
+  <meta itemprop="name" content="储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区">
+  <meta itemprop="description" content="储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区">
+  <meta itemprop="datePublished" content="2024-12-05T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-12-05T00:00:00+00:00">
+  <meta itemprop="wordCount" content="18">
+  <meta itemprop="keywords" content="Windows">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区">
+  <meta name="twitter:description" content="储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-12-05T00:00:00Z">2024-12-05</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>Windows电脑或服务器以及NAS文件共享设备在配置了文件共享服务后，通常会建立多个不同权限的账户，来给予用户在访问共享文件时有不同的控制和管理权限。当我们首次使用某个账户登录访问共享文件夹，会弹出用户登录的窗口，要求输入用户名和密码，这时如果勾选了“记住我的凭据”选项，以后再访问这个共享文件夹时，就会自动使用这次登录所使用用户名自动登录，而不需要再验证了，感觉挺方便的。不过，如果有时我们需要更换其它的用户来访问共享文件夹，那怎么办呢？下面分享具体的操作方法。</p>
+<p><img src="https://freezz.cc/img/7efc242ee47d0b8ea704983cd3a34014.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p>我们打开Windows电脑的 [控制面板] &gt; [凭据管理器]</p>
+<p><img src="https://freezz.cc/img/92e09d3ccc163cc0c4d30fcefa8632e2.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p>其中 [Windows凭据] 下就记录着我们登录访问共享文件的登录信息。展开其中一个你想要修改的登录共享文件的凭证，比如这里要修改访问这台名为“SXNAS”设备的登录账户，点击”编辑“。顺便说明一下：共享文件的设备可以是一台部署了文件共享服务的电脑或者是一台NAS共享设备，“Internet地址或网络地址”处会显示出设备的名称或IP地址</p>
+<p><img src="https://freezz.cc/img/548528b4878e9c3f62cee11d5d055fbb.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p>输入想要登录的用户名和密码，点击”保存“，这时重新访问共享文件，就会使用在 [Windows凭据] 那修改后的用户名自动进入共享文件了。</p>
+<p><img src="https://freezz.cc/img/2d274377fd69291cb0e4a76cb2020e3c.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p>如果上面的修改没有生效，可以重启一下“windows资源管理器”程序：鼠标右击”开始“菜单&gt;“任务管理器&quot;或者快捷键 Ctrl+Shift+Esc 打开“任务管理器”，找到“windows资源管理器”或者&quot;explorer.exe&quot;并右击它，选择”重新启动“，这时桌面会闪一下，桌面图标和底下的任务栏会消失几秒钟，等待桌面图标和底下的任务栏重新加载出来后，再重新访问共享文件就可以了。<br>
+<img src="https://freezz.cc/img/c61d1c39e15ff06a50d4b0d10f3edd2c.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p><img src="https://freezz.cc/img/16fa38dd77b000ae2d1c57e0e68fec78.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p>如果你觉得这个方法不够直观，也可以在[windows凭据]那，删除相应的凭据，然后重新启动”Windows资源管理器“程序，然后再访问共享文件夹，这时，会重新弹出登录的窗口，输入你要登录使用的用户名密码，即可。</p>
+<p><img src="https://freezz.cc/img/2b516baeae35144761259b67b977dc9f.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p>当然，在删除凭据后，你也可以通过 “添加Windows凭据”，来重新添加访问设备的账号，来达到更换访问共享文件账户的目的。</p>
+<p><img src="https://freezz.cc/img/785a2798defa0c82e908bb634fd73389.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+<p>如果之前是把网络共享文件夹映射成本地磁盘的，那就需要先断开映射连接，然后编辑或删除[Windows凭据]中对应的登录信息，再重新访问共享文件夹或对共享文件夹进行映射。</p>
+<p><img src="https://freezz.cc/img/63acf670bbf00e95f114b3397c9eb99b.png" alt="切换访问NAS_Windows共享文件的账户"></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/windows/" rel="tag">windows</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20240920/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">使用Windows凭据管理轻松切换访问NAS或Windows共享文件的账户</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘--infortrend存储设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘--戴尔设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">网址收录书签备忘(随更)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/js20241205a/">储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920/">使用Windows凭据管理轻松切换访问NAS或Windows共享文件的账户</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920b/">DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240919/">浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240918/">DELL戴尔服务器 H730阵列卡离线扩容</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/raid/" title="RAID">RAID</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%B5%AA%E6%BD%AE/" title="浪潮">浪潮</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BE%A4%E6%99%96/" title="群晖">群晖</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+    
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <div id="busuanzi-container">
+        <span id="busuanzi_value_page_pv"></span> 次访问
+        <span id="busuanzi_value_site_pv"></span> 总访问量
+        <span id="busuanzi_value_site_uv"></span> 访客数量
+    </div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid">
+		<meta property="og:url" content="http://localhost:1313/posts/js20240920b/">
+  <meta property="og:site_name" content="自游鱼">
+  <meta property="og:title" content="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid">
+  <meta property="og:description" content="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="服务器">
+    <meta property="article:tag" content="戴尔">
+    <meta property="article:tag" content="RAID">
+
+		
+  <meta itemprop="name" content="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid">
+  <meta itemprop="description" content="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid">
+  <meta itemprop="datePublished" content="2024-09-20T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-09-20T00:00:00+00:00">
+  <meta itemprop="wordCount" content="116">
+  <meta itemprop="keywords" content="服务器,戴尔,RAID">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid">
+  <meta name="twitter:description" content="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-09-20T00:00:00Z">2024-09-20</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>戴尔PowerEdge R750是一款高性能、可扩展的双路机架式服务器，适用于各种工作负载，如虚拟化、数据库、高性能计算等，R750的高性能、可扩展性和可靠性使其成为许多企业的理想选择。<br>
+<img src="/img/d434821b599aaad7f97d19b37894c1ed.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>R750服务器搭配PERC H755 RAID控制器是一个不错的组合，尤其是对于需要高性能和高可靠性的存储解决方案的应用场景。H755基于PCIe 4.0接口，提供更高的数据传输速率和带宽，配备高达8GB的NV缓存（Non-Volatile Cache），提高写入性能并保护数据免受电源故障的影响，H755支持RAID 0、1、5、6、10、50和60，提供b 灵活的数据保护和性能选项。<br>
+<img src="/img/f7e4c20d466b998bf6b6e3fd1acc0bd4.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>下面详细分享戴尔PowerEdge R750 + PERC H755 RAID控制器 配置阵列的具体步骤：<br>
+服务器开机后，当出现“DELL EMC”logo和功能键列表界面时，按下键盘的“F2”键，然后等待进入系统设置<br>
+<img src="/img/19042cb1f204638e15d5012cdf679af2.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p><img src="/img/debcd4182ad190f26dd579d34cdf45c3.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>在 [System Setup] 下使用方向键选择 [Device Settings] ，并按回车键，进入设备列表<br>
+<img src="/img/0bec6ccaa3000fdf48f43e44a3f5dcd9.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>在 [Device Settings] 下选择要配置的RAID控制器，这里就是H755这张阵列卡了
+<img src="/img/6f9d5794c114715aa0a69bab57236a2e.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>进入主菜单功能 [Main Menu] 列表<br>
+<img src="/img/957219289dc2581dce882435b2355141.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>在进行配置虚拟磁盘阵列前，需要先看看物理硬盘的状态。选择 [Physical Disk Management]
+<img src="/img/814a0e81b5a1ac66b63cd94a1d5f764a.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>如图所示，前面两行00和01槽位的硬盘是SSD类型的硬盘，处于“Online”状态，已经组建了RAID阵列的。其它的8个HDD机械硬盘，处于&quot;Ready&quot;就绪状态，可以组建RAID阵列
+<img src="/img/a1fcfbbe5768bb8f43de4dc731256e26.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>按“ESC”键返回到上一级 [Main Menu]， 选择 [Configuration Management] 进入配置管理
+<img src="/img/e1cd9500a8b9d6e53de814ff65e5e21c.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p><strong>创建阵列</strong></p>
+<p>在 [Configuration Management] 下选择 [Create Virtual Disk] 创建虚拟磁盘<br>
+<img src="/img/a61d0159a308c17e59ffcee8b4561de0.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>这里按实际情况选择虚拟磁盘RAID级别。例如2个硬盘的，可以选择RAID1，3个硬盘的，可以选择RAID5<br>
+<img src="/img/d70527b2614e8da9783a9295c0debec7.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/2c7325e439e075cdadef2c4ccbc380fa.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>本机有8个SAS的机械硬盘，选择使用RAID5级别<br>
+<img src="/img/4a7ba74de5cf2e086895cfb452cb7c22.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>勾选要组建虚拟磁盘阵列的物理硬盘。注意，<!-- raw HTML omitted -->不建议将SSD和HDD混合在同一个RAID阵列中，要将SSD和HDD分别配置在不同的RAID阵列中<!-- raw HTML omitted --><br>
+<img src="/img/da665788d4b334a880ad20e3a6141612.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>勾选好磁盘后，选择 [ Apply Changes] 提交变更<br>
+<img src="/img/9283d9f892a00cae728cbfa56ab78baa.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/1d24264aff588b0d03b95573a0d2d195.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>应用变更后，选中 [Create Virtual Disk] 创建阵列<br>
+<img src="/img/a26cfea0bf7fd4360e364a0cb5418b2a.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>这里会提示磁盘上的数据会删除，确认操作即可<br>
+<img src="/img/4ad8f0ccd8cf49b0c6714122236bcd36.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/0f4f3e78220beb93876c89430f83d1c2.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/e3b929cc1fea026a49b295d4297cabf1.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>到此，虚拟磁盘阵列的创建就完成了。</p>
+<p>按“ESC”键返回到[Configuration Management] 界面，查看磁盘组信息<br>
+<img src="/img/5d7acc3395438db191de64c4b5ee0c33.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/6cf2fa177cf06997ba74543ab0752c23.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>也可以返回到 [Main Menu] 列表，选择 [Virtual Disk Management] 查看阵列状态<br>
+<img src="/img/5775887944fcb18075d2a3b8cddf5653.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/d7d8ddd9a477991a9c04daf8947a1241.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/cedbed2f18f91d619e2c25684bef21a0.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>选择 [View Associated Physical Disks] 可以查看此磁盘阵列中的各个硬盘信息，正常情况下，各个硬盘都处于&quot;Online&quot;状态
+<img src="/img/1fdb6b2df446333bf29222b053805be1.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p><strong>下面再分享删除磁盘阵列的步骤：</strong><br>
+如果想要删除全部的阵列，先返回到主菜单列表，选择 [Configuration Management] <br>
+<img src="/img/203923ab42f5a11ce0e40a231019080d.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>选择 [Clear Configuration] <br>
+<img src="/img/3b81929f305dc6a516b434d63c5437e9.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>这将清除所有的磁盘阵列，包括热备盘等配置，确认信息即可。
+<img src="/img/7beddcfc438a11a4cdfaf0ca44cd00cf.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>如果只是想删除某个阵列，可返回到 [Main Menu] 主菜单，选择 [Virtual Disk Management] <br>
+<img src="/img/82c1b08ca8261ddbfc3fb45beb1e5a81.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>选择要删除的那一个硬盘阵列
+<img src="/img/ec3a2743e6ffbe0104020fa737e2ed4d.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>在磁盘阵列组下选择 [Delete Virtual Disk]
+选择 [Go] 执行删除操作
+<img src="/img/65f3e0683545ec5d7e34bad70144fde2.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p><img src="/img/2a37ec5282e9da13cde2a690920e0cf9.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>确认删除操作，就可以了
+<img src="/img/4956034fc63d4929657cfefbb3248c24.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/8f6c571068a4d6ebe7a9db712914601f.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/814a0e81b5a1ac66b63cd94a1d5f764a.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"><br>
+<img src="/img/a1fcfbbe5768bb8f43de4dc731256e26.png" alt="DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid"></p>
+<p>以上就是戴尔PowerEdge R750 搭配 PERC H755 RAID控制器创建阵列和删除阵列的全部步骤。</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E6%88%B4%E5%B0%94/" rel="tag">戴尔</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/raid/" rel="tag">RAID</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20240919/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20240920/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">使用Windows凭据管理轻松切换访问NAS或Windows共享文件的账户</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘--infortrend存储设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘--戴尔设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">网址收录书签备忘(随更)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/js20241205a/">储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920/">使用Windows凭据管理轻松切换访问NAS或Windows共享文件的账户</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920b/">DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240919/">浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240918/">DELL戴尔服务器 H730阵列卡离线扩容</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/raid/" title="RAID">RAID</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%B5%AA%E6%BD%AE/" title="浪潮">浪潮</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BE%A4%E6%99%96/" title="群晖">群晖</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+    
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <div id="busuanzi-container">
+        <span id="busuanzi_value_page_pv"></span> 次访问
+        <span id="busuanzi_value_site_pv"></span> 总访问量
+        <span id="busuanzi_value_site_uv"></span> 访客数量
+    </div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

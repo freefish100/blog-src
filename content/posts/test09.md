@@ -57,7 +57,7 @@ widgets: # Enable sidebar widgets in given order per page
   - "taglist"
 ---
 ```
-![Hugo](/images/hugo01.png "Hugo博客网站")
+![Hugo](/img/hugo01.png "Hugo博客网站")
 
 这段代码是一个用于Hugo网站的Markdown文件的头部（Front Matter），它用于定义文章或页面的元数据和一些特定的配置选项。Hugo是一个静态网站生成器，它使用这样的头部信息来控制内容的展示和行为。这个示例中的头部信息使用了YAML语法，它是一种常用于配置文件的数据序列化格式。下面是对每个字段含义的解释：
 

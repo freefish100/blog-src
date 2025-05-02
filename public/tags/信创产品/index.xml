@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>信创产品 on 自游鱼</title>
+    <link>https://freezz.cc/tags/%E4%BF%A1%E5%88%9B%E4%BA%A7%E5%93%81/</link>
+    <description>Recent content in 信创产品 on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://freezz.cc/tags/%E4%BF%A1%E5%88%9B%E4%BA%A7%E5%93%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区</title>
+      <link>https://freezz.cc/posts/js20241205/</link>
+      <pubDate>Thu, 05 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://freezz.cc/posts/js20241205/</guid>
+      <description>远程装载，”装载到“的目录不能是共享夹的根目录，只能是共享文件夹的下级目录&#xA;可把快照装载&#xA;Rocky Linux 连接SAN存储&#xA;查看本机的iqn&#xA;cat /etc/iscsi/initiatorname.iscsi&#xA;发现存储&#xA;sudo iscsiadm -m discovery -p 192.168.1.245 -t st&#xA;连接存储&#xA;sudo iscsiadm -m node -T iqn.1994-05.com.redhat:b757887ed68 -p 192.168.1.245 -l&#xA;其中“192.168.1.245”是存储的连接通道的ip地址，“iqn.1994-05.com.redhat:b757887ed68” 为Linux主机的iqn号（这里有个疑问，一般其它存储的品牌，在连接时是使用存储的iqn号的，但储迹品牌是使用Linux主机的iqn号）&#xA;连接成功后执行 lsblk 查看连接了存储上的LUN&#xA;进行LVM分区：&#xA;创建物理卷&#xA;sudo pvcreate /dev/sdc&#xA;创建新的卷组&#xA;sudo vgcreate nasvg /dev/sdc&#xA;创建新的逻辑卷(全部空间分成一个卷)&#xA;sudo lvcreate -l 100%FREE -n naslv nasvg&#xA;如果要创建多个新的逻辑卷：&#xA;sudo lvcreate -L 3G -n naslv1 nasvg 创建第一个逻辑卷&#xA;sudo lvcreate -L 5G -n naslv2 nasvg 创建第二个逻辑卷&#xA;sudo lvcreate -l 100%FREE -n naslv3 nasvg 剩余的空间创建第三个逻辑卷</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DELL戴尔服务器 H730阵列卡离线扩容 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="DELL戴尔服务器 H730阵列卡离线扩容">
+		<meta property="og:url" content="http://localhost:1313/posts/js20240918/">
+  <meta property="og:site_name" content="自游鱼">
+  <meta property="og:title" content="DELL戴尔服务器 H730阵列卡离线扩容">
+  <meta property="og:description" content="DELL戴尔服务器 H730阵列卡离线扩容">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-09-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-09-18T00:00:00+00:00">
+    <meta property="article:tag" content="服务器">
+    <meta property="article:tag" content="戴尔">
+
+		
+  <meta itemprop="name" content="DELL戴尔服务器 H730阵列卡离线扩容">
+  <meta itemprop="description" content="DELL戴尔服务器 H730阵列卡离线扩容">
+  <meta itemprop="datePublished" content="2024-09-18T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-09-18T00:00:00+00:00">
+  <meta itemprop="wordCount" content="76">
+  <meta itemprop="keywords" content="服务器,戴尔">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DELL戴尔服务器 H730阵列卡离线扩容">
+  <meta name="twitter:description" content="DELL戴尔服务器 H730阵列卡离线扩容">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">DELL戴尔服务器 H730阵列卡离线扩容</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-09-18T00:00:00Z">2024-09-18</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>服务器一般都配备有阵列卡。服务器阵列卡，简单来说就是一块特殊的扩展卡，它的作用是将多块独立的硬盘组合成一个逻辑硬盘，也就是我们常说的“阵列”。这个阵列可以提供比单个硬盘更高的存储性能、更大的存储容量，以及更强的容错能力。</p>
+<p>已经配置好的 RAID 阵列，通常是可以通过添加新的硬盘进行扩容的，阵列的扩容，可以分为在线扩容和离线扩容。<br>
+在线扩容 是指在 RAID 阵列运行的过程中，添加新的硬盘到现有阵列中以增加存储容量，无需停机，不会中断服务器或业务运行，一般是使用硬件RAID 控制器的web管理界面或特定的raid管理软件工具来进行扩容。<br>
+离线扩容 是指在 RAID 阵列扩容的过程中，需要停机或中断服务器业务。通常是在服务器重新启动或进入阵列管理的固件界面（如 BIOS 或 UEFI）进行操作。</p>
+<p>大多数现代 RAID 控制器支持在线扩容，而几乎所有 RAID 控制器都支持离线扩容，在正常情况下，在线扩容和离线扩容操作都不会破坏原有的数据，前提是扩容操作正确进行，硬件和软件没有出现故障。尽管 RAID 扩容通常不会导致数据丢失，但在执行扩展前，建议对数据进行备份以防万一。下面就以戴尔DELL服务器+H730阵列卡为例，分享阵列卡离线扩容的过程。本文中，使用的戴尔服务器是UEFI启动模式的。</p>
+<p>开机按F2 &gt; [System Setup] &gt; [Device Settings] &gt; [PERC H730 Mini]<br>
+<img src="/img/c618245f2c65ee7ab18eff123d28acbd.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p><img src="/img/6f09197719e5aa712d9de57be6f387f2.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p><img src="/img/eb206399647ee793bfc6e65d416f5f8c.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>选择 [Physical Disk Management] 查看当前的物理硬盘<br>
+<img src="/img/8dce0564abf34b44de442999b4f8e3ba.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>可以看到，这里有3个HDD机械硬盘处于Online状态，表示这3个硬盘已经是某个raid阵列的成员，另外有2个HDD机械硬盘是“Ready”就绪状态，表示没有加入到任何raid阵列的健康硬盘<br>
+<img src="/img/9f54299d5fb0754164ca895140783730.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p><img src="/img/211840429860da141b33affe50623244.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>查看了物理硬盘的状态后，按键盘的ESC键返回上一级菜单，选择 [Virtual Disk Management] 查看虚拟磁盘阵列<br>
+<img src="/img/6e492d7ae0343d053d581936de34ba51.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>这里可以看到有一个raid5级别的虚拟磁盘阵列，这个阵列的成员就是上面那3个Online状态的硬盘。我们准备对这个阵列进行扩容。首先选择并进入这个磁盘阵列<br>
+<img src="/img/4f417209d89f4dbe13a66e48ef8721ec.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>展开Operation选项的下拉菜单，选择 [Reconfigure Virtual Disks] ，再选择 [go] ，开始重新配置这个阵列<br>
+<img src="/img/7887d62cc6c91133264c01f72ac86d52.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p><img src="/img/3a3355057a516aba06969db4c1fbfbf0.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p><img src="/img/5ab4968d0efddcfd12c457a4f0128703.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>原阵列是raid5级别的，要给这个虚拟磁盘阵列添加一个或多个物理硬盘来进行扩容，这里选择与原来一样的级别raid5，然后选择 [Add Physical Disks] 进入添加硬盘的配置页面<br>
+<img src="/img/726860f89611ffb68efdc5794d220185.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>在添加硬盘的配置页面中，硬盘类型选择&quot;HDD&quot;机械硬盘，如果是固态硬盘就选择“SSD”。这里可以看到有两块可用的状态为“Ready”的机械物理硬盘，选中这两块硬盘，然后选择 [Apply Changes] 执行添加硬盘的操作<br>
+<img src="/img/7f606eb64974049fa3664460778304ff.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>确认要执行的操作<br>
+<img src="/img/42b969fda6c1c1f0133954e328a49935.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p><img src="/img/5a1b31d874b43194a9bcff5e8f46c074.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>然后选择 [Start Operation] 正式执行虚拟阵列的扩容操作 <br>
+<img src="/img/a431b271beeb75527897c98cf540259f.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>如果没有报错，就会返回操作成功的提示，点选“OK”即可<br>
+<img src="/img/020dd3a3d433f7fdc103cdf9baf8c274.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>然后按键盘的ESC键返回到虚拟磁盘阵列管理的页面，可以看到刚才扩容的阵列正在重建中<br>
+<img src="/img/0d26e4a81aef4eb0befe87b7b3151575.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>返回物理硬盘的管理页面，可以看到原先是“Ready”状态的两个硬盘，已经变更为Online状态了，目前这个阵列就从3个硬盘成员，扩容到5个硬盘了<img src="/img/233168f5af1f4080633a571da7c41bba.png" alt="DELL戴尔服务器 H730阵列卡离线扩容"></p>
+<p>RAID 阵列的扩展或迁移需要 RAID 控制器进行数据重分布，一般需要数小时甚至数天的时间，取决于硬盘的大小、性能和 RAID 级别，耐心等待即可。RAID阵列正在扩容期间，我们可以重启服务器进入操作系统，重新运行原来的业务应用，阵列扩容过程会在后台继续进行，扩容进度不会因为重启而中断，不过系统性能会出现比较明显的下降。</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E6%88%B4%E5%B0%94/" rel="tag">戴尔</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20240815b/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">普安Infortrend GS/GSE 存储的备份服务器功能</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20240919/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘--infortrend存储设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘--戴尔设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">网址收录书签备忘(随更)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/js20241205a/">储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920/">使用Windows凭据管理轻松切换访问NAS或Windows共享文件的账户</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920b/">DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240919/">浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240918/">DELL戴尔服务器 H730阵列卡离线扩容</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/raid/" title="RAID">RAID</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%B5%AA%E6%BD%AE/" title="浪潮">浪潮</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BE%A4%E6%99%96/" title="群晖">群晖</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+    
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <div id="busuanzi-container">
+        <span id="busuanzi_value_page_pv"></span> 次访问
+        <span id="busuanzi_value_site_pv"></span> 总访问量
+        <span id="busuanzi_value_site_uv"></span> 访客数量
+    </div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

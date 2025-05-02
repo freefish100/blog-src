@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose">
+		<meta property="og:url" content="http://localhost:1313/posts/js20250502/">
+  <meta property="og:site_name" content="自游鱼">
+  <meta property="og:title" content="中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose">
+  <meta property="og:description" content="中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-05T00:00:00+00:00">
+    <meta property="article:tag" content="Windows">
+
+		
+  <meta itemprop="name" content="中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose">
+  <meta itemprop="description" content="中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose">
+  <meta itemprop="datePublished" content="2024-12-05T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-12-05T00:00:00+00:00">
+  <meta itemprop="wordCount" content="725">
+  <meta itemprop="keywords" content="Windows">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose">
+  <meta name="twitter:description" content="中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-12-05T00:00:00Z">2024-12-05</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>在中国大陆安装Docker和Docker Compose需要使用国内的镜像源，因为直接访问官方源可能会出现连接速度慢或无法连接的情况。以下是针对中国大陆网络环境的安装方法：</p>
+<p><strong>中国大陆 ubuntu 22.04 安装Docker</strong></p>
+<ol>
+<li>首先更新软件包索引并安装必要的依赖：</li>
+</ol>
+<pre tabindex="0"><code>sudo apt update
+sudo apt install -y ca-certificates curl gnupg lsb-release
+</code></pre><ol start="2">
+<li>添加Docker的阿里云GPG密钥：</li>
+</ol>
+<pre tabindex="0"><code>sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</code></pre><p>或者添加清华大学TUNA 的 GPG 密钥：</p>
+<pre tabindex="0"><code>sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</code></pre><ol start="3">
+<li>设置Docker的阿里云镜像仓库：</li>
+</ol>
+<pre tabindex="0"><code>echo &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&#34; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre><p>或者相应的添加清华大学 TUNA 的软件源：</p>
+<pre tabindex="0"><code>echo &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable&#34; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre><ol start="4">
+<li>更新apt索引并安装Docker：</li>
+</ol>
+<pre tabindex="0"><code>sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</code></pre><ol start="5">
+<li>验证Docker安装是否成功：</li>
+</ol>
+<pre tabindex="0"><code>sudo docker run hello-world
+</code></pre><p>把上面的安装步骤做成一个脚本：</p>
+<pre tabindex="0"><code>#!/bin/bash
+
+# Ubuntu 22.04 Docker一键安装脚本(使用阿里云镜像源)
+# 使用方法: chmod +x install_docker.sh &amp;&amp; sudo ./install_docker.sh
+
+set -e
+
+echo &#34;正在更新软件包索引并安装必要依赖...&#34;
+apt update
+apt install -y ca-certificates curl gnupg lsb-release
+
+echo &#34;正在添加Docker的阿里云GPG密钥...&#34;
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo &#34;正在设置Docker的阿里云镜像仓库...&#34;
+echo &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release&gt;
+
+echo &#34;正在更新apt索引并安装Docker...&#34;
+apt update
+apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+echo &#34;Docker安装完成！&#34;
+
+# 输出版本信息
+echo -e &#34;\n=== 版本信息 ===&#34;
+echo &#34;Docker 版本: $(docker --version | cut -d&#39; &#39; -f3 | tr -d &#39;,&#39;)&#34;
+echo &#34;Docker Compose 版本: $(docker compose version | grep -oP &#39;v\K\d+\.\d+\.\d+&#39;)&#34;
+
+# 验证安装
+echo -e &#34;\n正在验证Docker安装...&#34;
+</code></pre><p>将上面的代码保存为install_docker.sh
+给脚本添加执行权限：chmod +x install_docker.sh
+使用root权限运行脚本：sudo ./install_docker.sh</p>
+<p>配置Docker国内镜像加速
+安装完Docker后，建议配置国内镜像加速器以提高Docker镜像下载速度：</p>
+<ol>
+<li>创建Docker配置目录：</li>
+</ol>
+<pre tabindex="0"><code>sudo mkdir -p /etc/docker
+</code></pre><ol start="2">
+<li>配置镜像加速器（可选择以下任一加速器或多个）：</li>
+</ol>
+<pre tabindex="0"><code>sudo tee /etc/docker/daemon.json &lt;&lt;-&#39;EOF&#39;
+{
+  &#34;registry-mirrors&#34;: [
+    &#34;https://registry.docker-cn.com&#34;,
+    &#34;https://docker.mirrors.ustc.edu.cn&#34;,
+    &#34;https://hub-mirror.c.163.com&#34;,
+    &#34;https://mirror.baidubce.com&#34;
+  ]
+}
+EOF
+</code></pre><ol start="3">
+<li>重启Docker服务使配置生效：</li>
+</ol>
+<pre tabindex="0"><code>sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre><p>验证加速器是否生效：
+docker info
+在输出的信息中查找 Registry Mirrors: 部分，应该能看到你配置的加速器地址列表</p>
+<p>安装Docker Compose
+可以通过以下方式安装Docker Compose：</p>
+<pre tabindex="0"><code># 使用国内镜像源下载Docker Compose
+DOCKER_COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep &#39;tag_name&#39; | cut -d&#39;&#34;&#39; -f4)
+sudo curl -L &#34;https://get.daocloud.io/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)&#34; -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre><p>如果上面的方法下载速度仍然很慢，可以尝试使用下面的清华大学镜像：</p>
+<pre tabindex="0"><code># 例如安装2.23.0版本
+export DOCKER_COMPOSE_VERSION=2.23.0
+sudo curl -L &#34;https://mirrors.tuna.tsinghua.edu.cn/docker-compose/linux/$(uname -s)/$(uname -m)/docker-compose-linux-$(uname -m)-${DOCKER_COMPOSE_VERSION}&#34; -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre><p>将当前用户添加到docker组</p>
+<pre tabindex="0"><code>sudo usermod -aG docker $USER
+</code></pre><p>记得注销并重新登录以使更改生效。</p>
+<p>验证安装</p>
+<pre tabindex="0"><code># 检查Docker版本
+docker --version
+
+# 检查Docker Compose版本
+docker compose version
+</code></pre><p>&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..
+下面是更详细的在centos 7.9 ubuntu 22.04 中安装Docker和Docker Compose整理：
+<strong>CentOS 7.9 安装 Docker 和 Docker Compose</strong>
+安装必要依赖
+<code>yum install -y yum-utils device-mapper-persistent-data lvm2</code>
+配置国内 Docker 源</p>
+<pre tabindex="0"><code># 阿里云
+yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# 或者腾讯云
+yum-config-manager --add-repo https://mirrors.cloud.tencent.com/docker-ce/linux/centos/docker-ce.repo
+</code></pre><p>安装 Docker 和 Docker Compose</p>
+<pre tabindex="0"><code>yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre><p>启动 Docker 并设置开机自启
+systemctl start docker
+systemctl enable docker
+配置国内 Docker 镜像加速</p>
+<pre tabindex="0"><code>mkdir -p /etc/docker
+tee /etc/docker/daemon.json &lt;&lt;EOF
+{
+  &#34;registry-mirrors&#34;: [
+    &#34;https://docker.mirrors.ustc.edu.cn&#34;,
+    &#34;https://hub-mirror.c.163.com&#34;,
+    &#34;https://mirror.baidubce.com&#34;,
+    &#34;https://mirror.aliyuncs.com&#34;,
+    &#34;https://mirror.ccs.tencentyun.com&#34;,
+    &#34;https://mirrors.tuna.tsinghua.edu.cn/docker-ce&#34;
+  ]
+}
+EOF
+</code></pre><p>重启 Docker 使其生效：
+systemctl daemon-reload
+systemctl restart docker
+验证 Docker 和 Docker Compose 插件：
+docker version
+docker compose version
+验证加速器是否生效：
+docker info
+在输出的信息中查找 Registry Mirrors: 部分，应该能看到你配置的加速器地址列表</p>
+<p><strong>Ubuntu 22.04 安装 Docker 和 Docker Compose</strong>
+更新软件包：
+sudo apt update -y
+sudo apt install -y ca-certificates curl gnupg lsb-release
+配置国内 Docker 源：</p>
+<pre tabindex="0"><code># 创建 keyring 目录
+sudo mkdir -p /etc/apt/keyrings
+# 阿里云 Docker GPG 密钥
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc
+# 添加 Docker 阿里云仓库
+echo \
+  &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
+  $(lsb_release -cs) stable&#34; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre><p>安装 Docker 和 Docker Compose：
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+启动 Docker 并设置开机自启
+sudo systemctl start docker
+sudo systemctl enable docker
+配置国内 Docker 镜像加速：
+创建或修改 /etc/docker/daemon.json</p>
+<pre tabindex="0"><code>sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;&lt;EOF
+{
+  &#34;registry-mirrors&#34;: [
+    &#34;https://docker.mirrors.ustc.edu.cn&#34;,
+    &#34;https://hub-mirror.c.163.com&#34;,
+    &#34;https://mirror.baidubce.com&#34;,
+    &#34;https://mirror.aliyuncs.com&#34;,
+    &#34;https://mirror.ccs.tencentyun.com&#34;,
+    &#34;https://mirrors.tuna.tsinghua.edu.cn/docker-ce&#34;
+  ]
+}
+EOF
+</code></pre><p>重启 Docker 使其生效：
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+验证 Docker 和 Docker Compose 插件：
+docker version
+docker compose version
+验证加速器是否生效：
+docker info
+在输出的信息中查找 Registry Mirrors: 部分，应该能看到你配置的加速器地址列表
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</p>
+<p>Docker 默认将镜像、容器、卷等数据存储在 /var/lib/docker 目录下。如果你想将其更改为 /home/docker（或其他路径），可以按照以下步骤操作：
+方法 1：修改 Docker 配置文件（推荐）
+停止 Docker 服务
+sudo systemctl stop docker
+复制现有 Docker 数据到新路径
+sudo mv /var/lib/docker /home/docker
+如果 /home 在不同的磁盘分区，建议使用 rsync 进行复制：
+sudo rsync -aP /var/lib/docker /home/
+sudo rm -rf /var/lib/docker
+修改 Docker 配置
+编辑 daemon.json（如果不存在就新建）：
+sudo mkdir -p /etc/docker
+sudo nano /etc/docker/daemon.json
+添加或修改以下内容：
+{
+&ldquo;data-root&rdquo;: &ldquo;/home/docker&rdquo;
+}
+注意：data-root 指定 Docker 的数据存储路径。
+重新加载并启动 Docker
+sudo systemctl daemon-reload
+sudo systemctl start docker
+验证是否修改成功
+docker info | grep &ldquo;Docker Root Dir&rdquo;
+Docker Root Dir: /home/docker
+说明已经成功修改。</p>
+<p>方法 2：使用 systemd 配置覆盖
+如果你不想修改 daemon.json，也可以使用 systemd 方式修改 Docker 的存储路径。
+创建 systemd 配置覆盖
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo nano /etc/systemd/system/docker.service.d/override.conf</p>
+<pre tabindex="0"><code>[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd --data-root=/home/docker -H fd://
+</code></pre><p>重新加载 systemd 并重启 Docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</p>
+<p>查看docker 镜像的存储路径
+sudo docker info | grep &ldquo;Storage Driver&rdquo;
+镜像文件默认存放在 /var/lib/docker/&lt;存储驱动&gt;/ 目录下，其中 &lt;存储驱动&gt; 取决于 Docker 使用的存储驱动，常见的有 overlay2、aufs、btrfs、zfs 等
+<img src="../_resources/ec2876a1dc8a58b039677df201fef63f.png" alt="ec2876a1dc8a58b039677df201fef63f.png">
+sudo ls /var/lib/docker/
+<img src="../_resources/763038afcee59d44567b582014018a5c.png" alt="763038afcee59d44567b582014018a5c.png">
+进入目录：
+需要切换成root用户
+cd /var/lib/docker/overlay2
+或者
+sudo bash -c &ldquo;cd /var/lib/docker/overlay2 &amp;&amp; bash&rdquo;
+<img src="../_resources/788a6ff66d2fa7c3b828195de5c03088.png" alt="788a6ff66d2fa7c3b828195de5c03088.png">
+这里会自动切换成root用户查看</p>
+<p>查看某个镜像的具体存储位置：
+列出所有镜像
+sudo docker images
+<img src="../_resources/c7ba57281162a9aacade85f2d4d815b6.png" alt="c7ba57281162a9aacade85f2d4d815b6.png">
+用 docker inspect 命令获取某个镜像的详细信息
+sudo docker inspect cb1febb7d8ae
+<img src="../_resources/6a3698f92274b18436dda01779250f7f.png" alt="6a3698f92274b18436dda01779250f7f.png">
+其中找到 GraphDriver.Data.LowerDir 和 GraphDriver.Data.UpperDir，这些路径就是该镜像的存储位置</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/windows/" rel="tag">windows</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20240920/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">使用Windows凭据管理轻松切换访问NAS或Windows共享文件的账户</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20241205a/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘--infortrend存储设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘--戴尔设备篇(随更)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">网址收录书签备忘(随更)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/js20241205a/">储迹存储功能界面，Rocky linux 9 挂载存储并配置LVM分区</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20250502/">中国大陆 centos 7.9 ubuntu 22.04 安装Docker和Docker Compose</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920/">使用Windows凭据管理轻松切换访问NAS或Windows共享文件的账户</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240920b/">DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20240919/">浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/raid/" title="RAID">RAID</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%B5%AA%E6%BD%AE/" title="浪潮">浪潮</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BE%A4%E6%99%96/" title="群晖">群晖</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+    
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <div id="busuanzi-container">
+        <span id="busuanzi_value_page_pv"></span> 次访问
+        <span id="busuanzi_value_site_pv"></span> 总访问量
+        <span id="busuanzi_value_site_uv"></span> 访客数量
+    </div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

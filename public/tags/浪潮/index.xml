@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>浪潮 on 自游鱼</title>
-    <link>http://localhost:1313/tags/%E6%B5%AA%E6%BD%AE/</link>
+    <link>https://freezz.cc/tags/%E6%B5%AA%E6%BD%AE/</link>
     <description>Recent content in 浪潮 on 自游鱼</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 19 Sep 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E6%B5%AA%E6%BD%AE/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://freezz.cc/tags/%E6%B5%AA%E6%BD%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</title>
-      <link>http://localhost:1313/posts/js20240919/</link>
+      <link>https://freezz.cc/posts/js20240919/</link>
       <pubDate>Thu, 19 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/js20240919/</guid>
+      <guid>https://freezz.cc/posts/js20240919/</guid>
       <description>浪潮NF5270M6服务器，安装了ubuntu20.04，虽然在系统中能识别有内置的网卡，但驱动有问题，无法查看到网卡的网络接口无法获取到ip，需要安装官方提供的驱动程序。&#xA;1.把包括有网卡驱动文件的ngbe文件夹上传到服务器中，进入src目录&#xA;2.安装必需的构建工具和内核头文件，会提示安装一些依赖和软件&#xA;sudo apt install build-essential linux-headers-$(uname -r)&#xA;3.编译安装&#xA;sudo make install&#xA;4.加载驱动模块&#xA;返回上一级目录到ngbe中，执行 sudo modprobe ngbe ，并执行 lsmod | grep ngbe 验证是否成功加载驱动&#xA;5.查看网卡是否已被识别 lspci | grep Ethernet&#xA;6.执行 ip a 查看ip。&#xA;eno1内置网卡接上网络，通过DHCP的方式获取到ip，在未安装官方的驱动前，无法看到内置网卡的接口。</description>
     </item>
   </channel>

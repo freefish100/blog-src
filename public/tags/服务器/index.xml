@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>服务器 on 自游鱼</title>
-    <link>http://localhost:1313/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <link>https://freezz.cc/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
     <description>Recent content in 服务器 on 自游鱼</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 20 Sep 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://freezz.cc/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DELL戴尔服务器R750 H755阵列卡 配置磁盘阵列raid</title>
-      <link>http://localhost:1313/posts/js20240920b/</link>
+      <link>https://freezz.cc/posts/js20240920b/</link>
       <pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/js20240920b/</guid>
+      <guid>https://freezz.cc/posts/js20240920b/</guid>
       <description>戴尔PowerEdge R750是一款高性能、可扩展的双路机架式服务器，适用于各种工作负载，如虚拟化、数据库、高性能计算等，R750的高性能、可扩展性和可靠性使其成为许多企业的理想选择。&#xA;R750服务器搭配PERC H755 RAID控制器是一个不错的组合，尤其是对于需要高性能和高可靠性的存储解决方案的应用场景。H755基于PCIe 4.0接口，提供更高的数据传输速率和带宽，配备高达8GB的NV缓存（Non-Volatile Cache），提高写入性能并保护数据免受电源故障的影响，H755支持RAID 0、1、5、6、10、50和60，提供b 灵活的数据保护和性能选项。&#xA;下面详细分享戴尔PowerEdge R750 + PERC H755 RAID控制器 配置阵列的具体步骤：&#xA;服务器开机后，当出现“DELL EMC”logo和功能键列表界面时，按下键盘的“F2”键，然后等待进入系统设置&#xA;在 [System Setup] 下使用方向键选择 [Device Settings] ，并按回车键，进入设备列表&#xA;在 [Device Settings] 下选择要配置的RAID控制器，这里就是H755这张阵列卡了 进入主菜单功能 [Main Menu] 列表&#xA;在进行配置虚拟磁盘阵列前，需要先看看物理硬盘的状态。选择 [Physical Disk Management] 如图所示，前面两行00和01槽位的硬盘是SSD类型的硬盘，处于“Online”状态，已经组建了RAID阵列的。其它的8个HDD机械硬盘，处于&amp;quot;Ready&amp;quot;就绪状态，可以组建RAID阵列 按“ESC”键返回到上一级 [Main Menu]， 选择 [Configuration Management] 进入配置管理 创建阵列&#xA;在 [Configuration Management] 下选择 [Create Virtual Disk] 创建虚拟磁盘&#xA;这里按实际情况选择虚拟磁盘RAID级别。例如2个硬盘的，可以选择RAID1，3个硬盘的，可以选择RAID5&#xA;本机有8个SAS的机械硬盘，选择使用RAID5级别&#xA;勾选要组建虚拟磁盘阵列的物理硬盘。注意，不建议将SSD和HDD混合在同一个RAID阵列中，要将SSD和HDD分别配置在不同的RAID阵列中&#xA;勾选好磁盘后，选择 [ Apply Changes] 提交变更&#xA;应用变更后，选中 [Create Virtual Disk] 创建阵列&#xA;这里会提示磁盘上的数据会删除，确认操作即可&#xA;到此，虚拟磁盘阵列的创建就完成了。&#xA;按“ESC”键返回到[Configuration Management] 界面，查看磁盘组信息</description>
     </item>
     <item>
       <title>浪潮NF5270M6服务器 ubuntu20.04 编译安装网卡驱动</title>
-      <link>http://localhost:1313/posts/js20240919/</link>
+      <link>https://freezz.cc/posts/js20240919/</link>
       <pubDate>Thu, 19 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/js20240919/</guid>
+      <guid>https://freezz.cc/posts/js20240919/</guid>
       <description>浪潮NF5270M6服务器，安装了ubuntu20.04，虽然在系统中能识别有内置的网卡，但驱动有问题，无法查看到网卡的网络接口无法获取到ip，需要安装官方提供的驱动程序。&#xA;1.把包括有网卡驱动文件的ngbe文件夹上传到服务器中，进入src目录&#xA;2.安装必需的构建工具和内核头文件，会提示安装一些依赖和软件&#xA;sudo apt install build-essential linux-headers-$(uname -r)&#xA;3.编译安装&#xA;sudo make install&#xA;4.加载驱动模块&#xA;返回上一级目录到ngbe中，执行 sudo modprobe ngbe ，并执行 lsmod | grep ngbe 验证是否成功加载驱动&#xA;5.查看网卡是否已被识别 lspci | grep Ethernet&#xA;6.执行 ip a 查看ip。&#xA;eno1内置网卡接上网络，通过DHCP的方式获取到ip，在未安装官方的驱动前，无法看到内置网卡的接口。</description>
     </item>
     <item>
       <title>DELL戴尔服务器 H730阵列卡离线扩容</title>
-      <link>http://localhost:1313/posts/js20240918/</link>
+      <link>https://freezz.cc/posts/js20240918/</link>
       <pubDate>Wed, 18 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/js20240918/</guid>
+      <guid>https://freezz.cc/posts/js20240918/</guid>
       <description>服务器一般都配备有阵列卡。服务器阵列卡，简单来说就是一块特殊的扩展卡，它的作用是将多块独立的硬盘组合成一个逻辑硬盘，也就是我们常说的“阵列”。这个阵列可以提供比单个硬盘更高的存储性能、更大的存储容量，以及更强的容错能力。&#xA;已经配置好的 RAID 阵列，通常是可以通过添加新的硬盘进行扩容的，阵列的扩容，可以分为在线扩容和离线扩容。&#xA;在线扩容 是指在 RAID 阵列运行的过程中，添加新的硬盘到现有阵列中以增加存储容量，无需停机，不会中断服务器或业务运行，一般是使用硬件RAID 控制器的web管理界面或特定的raid管理软件工具来进行扩容。&#xA;离线扩容 是指在 RAID 阵列扩容的过程中，需要停机或中断服务器业务。通常是在服务器重新启动或进入阵列管理的固件界面（如 BIOS 或 UEFI）进行操作。&#xA;大多数现代 RAID 控制器支持在线扩容，而几乎所有 RAID 控制器都支持离线扩容，在正常情况下，在线扩容和离线扩容操作都不会破坏原有的数据，前提是扩容操作正确进行，硬件和软件没有出现故障。尽管 RAID 扩容通常不会导致数据丢失，但在执行扩展前，建议对数据进行备份以防万一。下面就以戴尔DELL服务器+H730阵列卡为例，分享阵列卡离线扩容的过程。本文中，使用的戴尔服务器是UEFI启动模式的。&#xA;开机按F2 &amp;gt; [System Setup] &amp;gt; [Device Settings] &amp;gt; [PERC H730 Mini]&#xA;选择 [Physical Disk Management] 查看当前的物理硬盘&#xA;可以看到，这里有3个HDD机械硬盘处于Online状态，表示这3个硬盘已经是某个raid阵列的成员，另外有2个HDD机械硬盘是“Ready”就绪状态，表示没有加入到任何raid阵列的健康硬盘&#xA;查看了物理硬盘的状态后，按键盘的ESC键返回上一级菜单，选择 [Virtual Disk Management] 查看虚拟磁盘阵列&#xA;这里可以看到有一个raid5级别的虚拟磁盘阵列，这个阵列的成员就是上面那3个Online状态的硬盘。我们准备对这个阵列进行扩容。首先选择并进入这个磁盘阵列&#xA;展开Operation选项的下拉菜单，选择 [Reconfigure Virtual Disks] ，再选择 [go] ，开始重新配置这个阵列&#xA;原阵列是raid5级别的，要给这个虚拟磁盘阵列添加一个或多个物理硬盘来进行扩容，这里选择与原来一样的级别raid5，然后选择 [Add Physical Disks] 进入添加硬盘的配置页面&#xA;在添加硬盘的配置页面中，硬盘类型选择&amp;quot;HDD&amp;quot;机械硬盘，如果是固态硬盘就选择“SSD”。这里可以看到有两块可用的状态为“Ready”的机械物理硬盘，选中这两块硬盘，然后选择 [Apply Changes] 执行添加硬盘的操作&#xA;确认要执行的操作&#xA;然后选择 [Start Operation] 正式执行虚拟阵列的扩容操作 如果没有报错，就会返回操作成功的提示，点选“OK”即可&#xA;然后按键盘的ESC键返回到虚拟磁盘阵列管理的页面，可以看到刚才扩容的阵列正在重建中&#xA;返回物理硬盘的管理页面，可以看到原先是“Ready”状态的两个硬盘，已经变更为Online状态了，目前这个阵列就从3个硬盘成员，扩容到5个硬盘了</description>
     </item>
     <item>
       <title>实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</title>
-      <link>http://localhost:1313/posts/20240426/</link>
+      <link>https://freezz.cc/posts/20240426/</link>
       <pubDate>Fri, 26 Apr 2024 08:44:50 +0100</pubDate>
-      <guid>http://localhost:1313/posts/20240426/</guid>
+      <guid>https://freezz.cc/posts/20240426/</guid>
       <description>浪潮 G2 系列的存储产品，默认的管理ip为 192.168.70.10，登录用户名和密码为 superuser / Passw0rd! ，电脑浏览器访问G2存储管理的ip，即可打开存储的登录页面&#xA;登录后，看到首页是G2存储的总览状态&#xA;当前已建立了一个存储池和一个存储卷&#xA;这里讲述一下建立一个卷和把卷映射到主机的基本操作：&#xA;1、点击页面左边导航条的第3个图标，再点击“创建卷”&#xA;这里新建一个“基本”卷&#xA;2、点击页面左边导航条的第4个图标，再点击“添加主机”&#xA;填写主机的名称和iSCS端口(主机的iqn)。名称这里可自定义，iSCS端口要填写主机的IQN名称&#xA;按如下步骤可以查找到主机的IQN：打开windows server的“开始菜单”&amp;ndash;“Windows管理工具”&amp;ndash;&amp;ldquo;iSCSI发起程序&amp;rdquo;&#xA;切换到&amp;quot;配置”选项卡，即可看到主机的IQN名称，把IQN复制粘贴到上面第2个步骤的“iSCS端口”里&#xA;3、把卷映射到主机&#xA;选择要映射到的主机，这里选择上面刚刚添加的那台主机&#xA;4、查看存储设备的ip地址，以太网端口的ip，这台G2是双控制器的机型，每个控制器有4个端口。当前这里就配置了每个控制器的1和2端口的ip，主机通过交换机与存储设备控制器的端口都已连通&#xA;5、再次打开&amp;quot;iSCSI发起程序&amp;quot;，切换到“目标”选项卡，在“目标”中填写上图中的控制器以太网端口的ip，如192.168.67.130 ，然后点击“快速连接”&#xA;成功连接到目标存储的状态。双控制器的多个端口ip的，重复第5个步骤，把所有的目标ip都连接上&#xA;当&amp;quot;iSCSI发起程序&amp;quot;连接目标存储成功后，存储端就会看到主机处于“联机”状态&#xA;6、安装多路径功能。这台G2存储，是双控多端口链路的，主机还需要安装“多路径”服务，以防止某单条链路故障导致业务中断&#xA;安装好MPIO多路径功能后，重启一次主机，然后打开MPIO属性设置&#xA;点击“发现多路径”选项卡，对相应的设备勾选上“添加对iSCSI设备的支持”&#xA;7、打开“磁盘管理器”，点击“操作”菜单&amp;ndash;“重新扫描磁盘”，就可以见到一块新添加的磁盘了，右击这块新磁盘选择“联机”，然后再次右击新磁盘选择“初始化”，然后对新磁盘进行分区，就可以使用了。&#xA;这样就把G2存储上的一个卷，连接并挂载到windows server 的主机上，当成本地磁盘使用了。</description>
     </item>
     <item>
       <title>技术备忘--戴尔设备篇(随更)</title>
-      <link>http://localhost:1313/posts/jsbw202410a/</link>
+      <link>https://freezz.cc/posts/jsbw202410a/</link>
       <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/jsbw202410a/</guid>
+      <guid>https://freezz.cc/posts/jsbw202410a/</guid>
       <description>戴尔DELL设备 戴尔计算机不能通电、无法开机自检、无法启动或无视频的问题 Precision Workstation 工作站诊断指示灯参考指南&#xA;Precision Workstation 工作站诊断指示灯参考指南 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。&#xA;…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。&#xA;…………………………………. DELL 14G INTEL平台服务器BIOS设置详解&#xA;…………………………………. Precision 3650 塔式机规格参数&#xA;…………………………………. 在RAID控制器10中分配/取消分配设置热备盘&#xA;…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号&#xA;，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。&#xA;…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍&#xA;…………………………………. Dell EMC PowerEdge 服务器型号列表&#xA;……………….. PowerEdge 服务器命名约定&#xA;…………………………………. IDRAC9管理口配置&#xA;遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。&#xA;…………………………………. T140机器进入S140软阵列&#xA;开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。</description>
     </item>
     <item>
       <title>DELL戴尔2012年至2022年生产的服务器型号列表</title>
-      <link>http://localhost:1313/posts/js20230223/</link>
+      <link>https://freezz.cc/posts/js20230223/</link>
       <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/js20230223/</guid>
+      <guid>https://freezz.cc/posts/js20230223/</guid>
       <description>DELL戴尔2012年至2022年生产的服务器型号参考列表(来源chatgpt，可能有错漏)&#xA;年份 机架式服务器型号 塔式服务器型号 主板芯片组 兼容的CPU型号 2012 PowerEdge R720 PowerEdge T620 Intel C600 Intel Xeon E5-2600 Series: 4-16 cores, up to 3.3 GHz 2013 PowerEdge R720xd PowerEdge T320 Intel C600 Intel Xeon E5-2400 Series: 4-12 cores, up to 2.4 GHz 2014 PowerEdge R730 PowerEdge T630 Intel C610 Intel Xeon E5-2600 v3 Series: 6-18 cores, up to 3.5 GHz 2015 PowerEdge R730xd PowerEdge T430 Intel C610 Intel Xeon E5-2600 v4 Series: 8-22 cores, up to 3.</description>
     </item>
     <item>
       <title>联想 x3650 M5 服务器不停机不重启加装硬盘并配置阵列</title>
-      <link>http://localhost:1313/posts/js20220904/</link>
+      <link>https://freezz.cc/posts/js20220904/</link>
       <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/js20220904/</guid>
+      <guid>https://freezz.cc/posts/js20220904/</guid>
       <description>联想 x3650 M5 服务器，支持硬盘热插拔，通过IMM远程管理配置硬盘阵列，不需要进入BIOS，不用停机或重启服务器，操作比较安全直观，非常适合生产环境。下面我们加装两个1.2T的SAS硬盘，详细记录加装硬盘的全过程。&#xA;关于IMM：IMM全称是Intel Mobile Module是联想IBM服务器上的集成管理模块，该模块是独立于服务器系统，可以通过一个单独的IP地址，使用Web和虚拟端口方式直接启动、停止和管理远程服务器，即使主板、处理器或者内存故障导致主机无法启动，也依然可以远程管理服务器，可以远程直接操作启动画面和服务器工作界面。&#xA;登陆IMM远程管理界面&#xA;找到服务器背面的IMM远程管理口，一般会标记为”IMM”或者有一个扳手型的标志&#xA;然后接上网线。把控制端的电脑的ip设置为与IMM远程管理口的ip同一个网段，联想 System x3650 M5服务器IMM远程管理口的默认初始ip是192.168.70.125。&#xA;在控制端电脑的浏览器中访问192.168.70.125即可打开IMM远程管理的登录页面，默认用户名USERID，密码PASSW0RD，（注意：0是数字0，不是字母O）。&#xA;登录成功后，可以看到系统信息&#xA;点击“Local Storage”，进入阵列卡硬盘存储管理页面&#xA;这里可以看到阵列卡的型号是M5210，有两个300G的硬盘&#xA;点击 “Storage RAID Configuation”&amp;ndash;“View Logical Drives by Storage Pools”，查看到这两个硬盘是做了raid1阵列模式&#xA;现在要添加两个1.2T的新硬盘，并配置成raid1。&#xA;首先在前面板插入新硬盘，槽位0和1是原来的300G硬盘，槽位2和3是新加装的1.2T硬盘 加装好新硬盘后，点击存储管理页面中的“Refresh”按钮，刷新一下，就可以看到新加入的硬盘了。&#xA;但是，这里的新硬盘是没有配置好阵列模式的，我们需要把新硬盘转换为未配置好的状态，然后再配置阵列，步骤如下：&#xA;到此，完成了新硬盘转换为未配置好的状态。进入Local Storage 页面，然后按下面步骤配置新硬盘的阵列&#xA;这里选择阵列模式，把硬盘添加到新阵列中&#xA;到这里，就配置好两个新硬盘的阵列了。然后打开服务器的“磁盘管理”，把新硬盘初始化，分区。&#xA;到此，就全部完成新硬盘的加装了。</description>
     </item>
   </channel>

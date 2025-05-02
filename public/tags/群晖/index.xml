@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>群晖 on 自游鱼</title>
-    <link>http://localhost:1313/tags/%E7%BE%A4%E6%99%96/</link>
+    <link>https://freezz.cc/tags/%E7%BE%A4%E6%99%96/</link>
     <description>Recent content in 群晖 on 自游鱼</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E7%BE%A4%E6%99%96/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://freezz.cc/tags/%E7%BE%A4%E6%99%96/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>群晖SAN Manager给电脑服务器扩容，挂载成本地磁盘</title>
-      <link>http://localhost:1313/posts/js20240815a/</link>
+      <link>https://freezz.cc/posts/js20240815a/</link>
       <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/js20240815a/</guid>
+      <guid>https://freezz.cc/posts/js20240815a/</guid>
       <description>我们在购买电脑时，对硬件配置很难做到一步到位，随着时间的推移，当时电脑的配置往往难以满足后续的使用要求，特别是硬盘，当资料越来越多时，就会出现硬盘空间不足的情况，无法存储更多的资料了，这时就需要再加装多一块硬盘，以满足当前的存储要求。&#xA;电脑的硬盘空间不足，除了直接在主机中添加硬盘来解决之外，还有一种更加专业和高级的解决方案，就是使用存储区域网络(SAN)。 SAN是一种专门的网络架构，用于将存储设备与普通电脑或服务器连接起来，提供高性能、高可用性的存储解决方案。SAN有很好的灵活性和可扩展性，可以轻松地增加或减少分配电脑服务器的存储空间，无需重新配置主机硬件。SAN存储解决方案一般应用在企业环境，但也适用于家庭环境。如果你公司或家里有一台存储设备，就可以使用SAN来解决电脑或服务器硬盘空间不足的情况。&#xA;说到存储设备，群晖应该是大家听到过次数最多的产品了，下面我们就以群晖DSM7.2系统版本，分享电脑连接SAN存储的过程。&#xA;在开始前，我们先了解一下几个有关于存储的基本概念：&#xA;1.存储区域网络(SAN)：是一种专用的高速网络，用于在数据存储设备（如磁盘阵列、磁带库等）与电脑服务器之间传输数据。&#xA;2.iSCSI (Internet Small Computer Systems Interface)：是实现存储区域网络（SAN）连接的一种网络协议技术，是一种基于IP网络的存储网络协议，允许客户端（发起端）通过TCP/IP网络（如以太网）访问存储设备（目标端）。&#xA;3.Fibre Channel（光纤通道）：也是实现存储区域网络（SAN）连接的一种高速网络协议技术，专为存储网络设计，提供高带宽和低延迟的数据传输。&#xA;4.SAN Manager：群晖的SAN Manager是可以轻松管理和监控iSCSI和Fibre Channel服务的一个工具。 iSCSI和Fibre Channel都是存储区域网络 (SAN) 协议提供对整合和块级数据存储的访问。客户端可以像访问本地硬盘一样访问 SAN 上的存储空间。&#xA;5.LUN：LUN是&amp;quot;Logical Unit Number&amp;quot;的缩写，即逻辑单元号，在存储领域,LUN代表了一个独立的、可寻址的存储单元。我们可以把它想象成一个虚拟的硬盘分区，通过SAN Manager，可以创建多个LUN，并将它们分配给不同的电脑服务器分配一个专用的存储空间。&#xA;了解了上面有关存储的基本术语后，我们正式开始进入实操。事前要确保电脑与存储设备之间的网络是连通的。这里演示通过iSCSI网络协议，一步一步教大家把公司或家里的电脑服务器连接上群晖的SAN存储，把群晖存储上的空间当成电脑或服务器的本地硬盘使用。&#xA;首先要记下电脑iSCIS中的IQN名称：&#xA;在Windows 10 的搜索框中搜索&amp;quot;iscsi&amp;quot;，点开&amp;quot;iSCSI程序&amp;quot;&#xA;如果是windows server版本的系统，则在“服务器管理器”的“工具”菜单下打开&amp;quot;iSCSI程序&amp;quot;&#xA;打开&amp;quot;iSCSI程序&amp;quot;后，点击“配置”选项卡，复制记下“发起程序名称”，这是主机iSCIS的IQN名称，后面的操作会用到。&#xA;IQN（iSCSI Qualified Name）是用于唯一标识iSCSI节点（如存储设备或电脑发起器）的名称&#xA;然后进入群晖存储的后台管理主页面，点击[套件中心]，找到[SAN Manager]&#xA;这是SAN Manager的主界面&#xA;点击左边导航栏的 [LUN] ，[新增]一个LUN&#xA;填写LUN存储空间的容量大小，这个就是后面挂载到电脑上的磁盘空间&#xA;这里按默认选择协议&#xA;到这一步就需要[添加新主机]，意思是要把上面的&amp;quot;LUN&amp;quot;连接到哪一台电脑或服务器上。&#xA;这里先[添加启动器]，并选择好主机的操作系统类型&#xA;添加主机的IQN号，把上面准备好的IQN名称填写进来&#xA;给予主机对LUN的读写权限&#xA;完成LUN的创建&#xA;已经创建好的LUN的状态&#xA;如果需要再新增多一台主机，可以点击“新增”按钮，继续重复上面的步骤添加主机。&#xA;注意：同一个LUN，只能给一台主机读和写的权限，其它主机只能给只读权限。&#xA;另外，如果目标计划用作集群感知存储（如VMFS，OCFS等）且需要连接到多台主机，请启用允许多个会话。否则，iSCSI Target一次只能连接到一台主机。&#xA;群晖存储的LUN创建好后，把电脑或服务器连接上群晖存储并挂载LUN，步骤如下：&#xA;打开iSCSI程序，点击“目标”选项卡，填写连接的目标(即存储设备的ip地址)，这里填写群晖存储的ip，点击“快速连接”，连接的成功后，会在“已发现的目标”下添加一条记录，并显示“已连接”的状态。&#xA;电脑的iSCSI程序成功连接好存储的LUN后，打开电脑的“磁盘管理器”，在“磁盘管理器”中就能看到一个新磁盘了，如果没看到，可点击“操作”菜单下的“重新扫描磁盘”。这里看到的这个新磁盘，实际上就是上面群晖存储上创建的那个LUN。&#xA;把新磁盘进行“联机”操作，并初始化新磁盘&#xA;最后把新磁盘进行分区并格式化，就可以正常使用了，跟电脑上的本地磁盘一样。</description>
     </item>
   </channel>

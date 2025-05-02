@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 自游鱼</title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://freezz.cc/categories/</link>
     <description>Recent content in Categories on 自游鱼</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 05 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://freezz.cc/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>技术笔记</title>
-      <link>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</link>
+      <link>https://freezz.cc/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://freezz.cc/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     <item>
       <title>公众号文章</title>
-      <link>http://localhost:1313/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/</link>
+      <link>https://freezz.cc/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/</guid>
+      <guid>https://freezz.cc/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/</guid>
       <description></description>
     </item>
     <item>
       <title>技术摘录</title>
-      <link>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</link>
+      <link>https://freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</guid>
+      <guid>https://freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</guid>
       <description></description>
     </item>
     <item>
       <title>随写摘录</title>
-      <link>http://localhost:1313/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/</link>
+      <link>https://freezz.cc/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/</guid>
+      <guid>https://freezz.cc/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/</guid>
       <description></description>
     </item>
   </channel>
